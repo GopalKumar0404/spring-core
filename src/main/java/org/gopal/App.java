@@ -1,59 +1,38 @@
 package org.gopal;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.annotation.AnnotationConfigApplicationContext;
+import org.gopal.dao.StudentDao;
+import org.gopal.dao.impl.StudentDaoImpl;
+import org.gopal.entites.Student;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
-import java.io.File;
+import java.util.List;
 
 /**
  * Hello world!
  *
  */
 public class App {
-    @Autowired
-    Emp emp2;
-    @Autowired
-    Student student2;
-
-    public Emp getEmp2() {
-        return emp2;
-    }
-
-    public void setEmp2(Emp emp2) {
-        this.emp2 = emp2;
-    }
-
-    public Student getStudent2() {
-        return student2;
-    }
-
-    public void setStudent2(Student student2) {
-        this.student2 = student2;
-    }
 
     public static void main(String[] args )
     {
-        AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext("org.gopal");
-        System.out.println( "Hello World!" );
-        Student student = applicationContext.getBean("student", Student.class);
-        System.out.println(student);
-        Emp emp = applicationContext.getBean("emp", Emp.class);
-        System.out.println(emp);
-//        System.out.println(emp2);
-//        System.out.println("Student " + student2);
-        DemoStudent demoStudent = applicationContext.getBean("demoStudent", DemoStudent.class);
-        System.out.println( demoStudent);
-        App app = applicationContext.getBean("app", App.class);
-        app.run();
+        AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("config.xml");
+        Student student = new Student(4,"Shyam","Patna");
+        StudentDao studentDao = applicationContext.getBean(StudentDaoImpl.class);
+        int result = studentDao.update(student);
+        System.out.println("Created Student Count : " + result);
+        int deleteResponse = studentDao.delete(2);
+        System.out.println("Deleted Student count : "+deleteResponse);
+        Student student1 = studentDao.getStudent(1);
+        System.out.println(student1);
+        List<Student> allStudent = studentDao.getAllStudent();
+        for(Student s : allStudent){
+            System.out.println(s);
+        }
+
+
+
     }
 
-//    @Override
-    public void run() {
-        System.out.println("Run method working");
-        System.out.println("emp "+emp2);
-        System.out.println("student2 "+ student2);
-    }
+
 }
