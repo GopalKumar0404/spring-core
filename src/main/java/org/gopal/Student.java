@@ -1,10 +1,15 @@
 package org.gopal;
 
+import org.springframework.beans.factory.annotation.Value;
+
 import java.util.List;
 
 public class Student {
+    @Value("Gopal Kumar")
     private String studentName;
+    @Value("Gopal Kumar studentId")
     private String studentId;
+    @Value("{'1234567890','1234567890'}")
     private List<String> phones;
 
     public Student() {

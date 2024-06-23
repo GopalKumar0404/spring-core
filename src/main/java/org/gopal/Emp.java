@@ -1,10 +1,12 @@
 package org.gopal;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 
 public class Emp {
-
+    @Value("Gopal Kumar Employee")
     private String employeeName;
+    @Value("Gopal Kumar EmployeeId")
     private String employeeId;
 
     public Emp() {

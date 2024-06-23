@@ -2,6 +2,7 @@ package org.gopal;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
+import org.springframework.context.annotation.AnnotationConfigApplicationContext;
 import org.springframework.context.support.AbstractApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -35,12 +36,7 @@ public class App {
 
     public static void main(String[] args )
     {
-        
-
-        File file = new File(System.getProperty("user.dir")+"\\src\\main\\resources\\config.xml");
-        System.out.println(file.exists());
-//        ApplicationContext applicationContext = new ClassPathXmlApplicationContext(System.getProperty("user.dir")+"\\src\\main\\resources\\config.xml");
-        AbstractApplicationContext applicationContext = new ClassPathXmlApplicationContext("config.xml");
+        AbstractApplicationContext applicationContext = new AnnotationConfigApplicationContext("org.gopal");
         System.out.println( "Hello World!" );
         Student student = applicationContext.getBean("student", Student.class);
         System.out.println(student);

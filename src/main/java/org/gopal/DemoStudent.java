@@ -3,9 +3,9 @@ package org.gopal;
 import org.springframework.beans.factory.annotation.Autowired;
 
 public class DemoStudent {
-//    @Autowired
+    @Autowired
     private Student student;
-//    @Autowired
+    @Autowired
     private Emp emp;
 
     public DemoStudent() {
