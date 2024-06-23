@@ -1,11 +1,13 @@
 package org.gopal.dao.impl;
 
+import lombok.AllArgsConstructor;
 import org.gopal.dao.StudentDao;
 import org.gopal.entites.Student;
 import org.springframework.jdbc.core.JdbcTemplate;
 
 import java.util.List;
 
+@AllArgsConstructor
 public class StudentDaoImpl implements StudentDao {
     private JdbcTemplate jdbcTemplate;
 
